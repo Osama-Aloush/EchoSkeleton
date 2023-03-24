@@ -5,7 +5,7 @@ namespace ClassLibrary
     public class clsPayment
     {
         public bool Active { get; set; }
-        public DateTime DateAdded { get; set; }
+        public string DateTime { get; set; }
         public string NameAdded { get; set; }
         public string CardAdded { get; set; }
         public string CVVAdded { get; set; }
