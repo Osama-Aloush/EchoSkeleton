@@ -11,8 +11,7 @@ namespace Testing6
     [TestClass]
     class tstOrder
     {
-        public bool Active { get; private set; }
-        public string OrderDescription { get; private set; }
+
 
         [TestMethod]
         public void TestMethod1()
@@ -23,57 +22,73 @@ namespace Testing6
             Assert.IsNotNull(sampleOrder);
         }
 
+        [TestMethod]
+        public void Order_IDPropertyOK()
+        {
+            clsOrder sampleOrder = new clsOrder();
+            String TestData = "AS21";
+            sampleOrder.Order_ID = TestData;
+            Assert.AreEqual(sampleOrder.Order_ID, TestData);
+        }
+
 
         [TestMethod]
-        public void OrderDescriptionPropertyOk()
+        public void Order_DescriptionPropertyOK()
         {
             //Creating instance of the class
             clsOrder sampleOrder = new clsOrder();
-
             String TestData = "Carrots";
-
-            sampleOrder.OrderDescription = TestData;
-
-            Assert.AreEqual(sampleOrder.OrderDescription, TestData);
+            sampleOrder.Order_Description = TestData;
+            Assert.AreEqual(sampleOrder.Order_Description, TestData);
 
         }
 
         [TestMethod]
-        public void OrderTotalPropertyOk()
+        public void Order_TotalPropertyOk()
         {
             clsOrder sampleOrder = new clsOrder();
-
             int TestData = 1;
-
-            sampleOrder.OrderTotal = TestData;
-
-            Assert.AreEqual(sampleOrder.OrderTotal, TestData);
+            sampleOrder.Order_Total = TestData;
+            Assert.AreEqual(sampleOrder.Order_Total, TestData);
 
         }
 
         [TestMethod]
-        public void HasDiscountPropertyOk()
+        public void Item_QuantityPropertyOk()
         {
             clsOrder sampleOrder = new clsOrder();
-
-            bool TestData = true;
-
-            sampleOrder.HasDiscount = TestData;
-
-            Assert.AreEqual(sampleOrder.HasDiscount, TestData);
-
-        }
-
-        [TestMethod]
-        public void DiscountAmountPropertyOk()
-        {
-            clsOrder sampleOrder = new clsOrder();
-
             int TestData = 1;
+            sampleOrder.Item_Quantity = TestData;
+            Assert.AreEqual(sampleOrder.Item_Quantity, TestData);
 
-            sampleOrder.DiscountAmount = TestData;
+        }
 
-            Assert.AreEqual(sampleOrder.DiscountAmount, TestData);
+        [TestMethod]
+        public void Delivery_StatusPropertyOK()
+        {
+            clsOrder sampleOrder = new clsOrder();
+            Boolean TestData = true;
+            sampleOrder.Delivery_Status = TestData;
+            Assert.AreEqual(sampleOrder.Delivery_Status, TestData);
+
+        }
+
+        [TestMethod]
+        public void Delivery_AddressPropertyOK()
+        {
+            clsOrder sampleOrder = new clsOrder();
+            String TestData = "123 ABC Street";
+            sampleOrder.Delivery_Address = TestData;
+            Assert.AreEqual(sampleOrder.Delivery_Address, TestData);
+        
+        }
+
+        [TestMethod]
+        public void Order_DatePropertyOK() {
+            clsOrder sampleOrder = new clsOrder();
+            DateTime TestData = DateTime.Now.Date;
+            sampleOrder.Order_Date = TestData;
+            Assert.AreEqual(sampleOrder.Order_Date, TestData);
 
         }
 
