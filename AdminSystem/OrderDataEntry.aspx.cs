@@ -17,11 +17,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Creating a new instance of a class
         clsOrder AnOrder = new clsOrder();
-        //Capture the Order ID
+        //Capture the Order data
         AnOrder.Order_ID = OrderIDTextBox.Text;
+        AnOrder.Order_Description = OrderDescTextBox.Text;
+        AnOrder.Delivery_Address = AddressTextBox.Text;
+        AnOrder.Delivery_Status = StatusCheckBox.Checked;
+        AnOrder.Order_Date = Convert.ToDateTime(OrderDateTextBox.Text);
+        AnOrder.Item_Quantity = Convert.ToInt32(ItemNoTextBox.Text); 
         //Storing an order into a session object
-        Session["An_Order"] = AnOrder;
+        Session["AnOrder"] = AnOrder;
         //Redirect to the viewer page
-        Response.Redirect("OrderViewr.aspx");
+        Response.Redirect("OrderViewer.aspx");
     }
 }
