@@ -33,11 +33,11 @@ namespace Testing4
         {
             clsPayment AnPayment = new clsPayment();
 
-            DateTime TestData = DateTime.Now.Date;
+            string TestData = "Expiry Date";
 
-            AnPayment.DateAdded = TestData;
+            AnPayment.DateTime = TestData;
 
-            Assert.AreEqual(AnPayment.DateAdded, TestData);
+            Assert.AreEqual(AnPayment.DateTime, TestData);
         }
 
         [TestMethod]
@@ -99,5 +99,110 @@ namespace Testing4
 
             Assert.AreEqual(AnPayment.AmountAdded, TestData);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsPayment AnPayment = new clsPayment();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            string NameAdded = "Osama AlOush";
+
+            Found = AnPayment.Find(NameAdded);
+
+            if (AnPayment.NameAdded != "Osama AlOush")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+        }
+
+        public void FindCardNo()
+        {
+            clsPayment AnPayment = new clsPayment();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            string CardAdded = "1234";
+
+            Found = AnPayment.Find(CardAdded);
+
+            if (AnPayment.CardAdded != "1234")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+        }
+
+        public void FindCVVNo()
+        {
+            clsPayment AnPayment = new clsPayment();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            string CVVAdded = "1234";
+
+            Found = AnPayment.Find(CVVAdded);
+
+            if (AnPayment.CardAdded != "123")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+        }
+
+        public void FindIDNo()
+        {
+            clsPayment AnPayment = new clsPayment();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            string IDAdded = "1234";
+
+            Found = AnPayment.Find(IDAdded);
+
+            if (AnPayment.IDAdded != "123456789")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+        }
+
+        public void FindAmount()
+        {
+            clsPayment AnPayment = new clsPayment();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            string AmountAdded = "1234";
+
+            Found = AnPayment.Find(AmountAdded);
+
+            if (AnPayment.AmountAdded != "100")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+        }
+
+
+
+
     }
 }
