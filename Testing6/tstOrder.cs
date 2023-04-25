@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Testing6
+namespace tstOrder
 {
     [TestClass]
     class tstOrder
@@ -26,7 +26,7 @@ namespace Testing6
         public void Order_IDPropertyOK()
         {
             clsOrder sampleOrder = new clsOrder();
-            String TestData = "AS21";
+            Int32 TestData = 1;
             sampleOrder.Order_ID = TestData;
             Assert.AreEqual(sampleOrder.Order_ID, TestData);
         }
@@ -100,9 +100,9 @@ namespace Testing6
             //Creating boolean value for the validation results
             Boolean Found = false;
             //Test Data
-            Int32 itemNo = 3;
+            Int32 TestData = 1;
             //Invoking the method
-            Found = AnOrder.Find(itemNo);
+            Found = AnOrder.Find(TestData);
             //Testing to see if the result is true
             Assert.IsTrue(Found);
         
@@ -115,7 +115,7 @@ namespace Testing6
             //Creating boolean value for the validation results
             Boolean Found = false;
             Boolean OK = true;
-            Int32 testData = 8;
+            Int32 testData = 1;
             //Invoking the method
             Found = AnOrder.Find(testData);
 
@@ -136,8 +136,7 @@ namespace Testing6
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-
-            Int32 testData = 8;
+            Int32 testData = 1;
 
             Found = AnOrder.Find(testData);
 
@@ -155,11 +154,11 @@ namespace Testing6
             Boolean Found = false;
             Boolean OK = true;
 
-            Int32 testData = 8;
+            Int32 testData = 1;
 
             Found = AnOrder.Find(testData);
 
-            if (AnOrder.Delivery_Address != "Test Street")
+            if (AnOrder.Delivery_Address != "18 Test Street")
             {
                 OK = false;
             }
@@ -173,12 +172,11 @@ namespace Testing6
             Boolean Found = false;
             Boolean OK = true;
 
-            Int32 testData = 8;
+            Int32 testData = 1;
 
-            Found = AnOrder.Find(testData);
+            Found = AnOrder.Find(testData); //Find the record in the database
 
-            if (AnOrder.Order_ID != "O-1")
-            {
+            if (AnOrder.Order_ID != 1) {
                 OK = false;
             }
             //test to see that the result is correct
@@ -192,7 +190,7 @@ namespace Testing6
             Boolean Found = false;
             Boolean OK = true;
 
-            Int32 testData = 8;
+            Int32 testData = 1;
 
             Found = AnOrder.Find(testData);
 
@@ -211,7 +209,7 @@ namespace Testing6
             Boolean Found = false;
             Boolean OK = true;
 
-            Int32 testData = 8;
+            Int32 testData = 1;
 
             Found = AnOrder.Find(testData);
 
@@ -230,7 +228,7 @@ namespace Testing6
             Boolean Found = false;
             Boolean OK = true;
 
-            Int32 testData = 8;
+            Int32 testData = 1;
 
             Found = AnOrder.Find(testData);
 
@@ -243,11 +241,9 @@ namespace Testing6
         }
 
 
+
     }
 
-
-
-}
 
 
 }

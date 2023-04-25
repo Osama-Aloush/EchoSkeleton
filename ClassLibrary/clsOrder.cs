@@ -9,7 +9,7 @@ namespace ClassLibrary
         private Int32 mOrder_Total;
         private DateTime mOrder_Date;
         private String mDelivery_Address;
-        private String mOrder_ID;
+        private Int32 mOrder_ID;
         private String mOrder_Description;
         private Boolean mDelivery_Status;
 
@@ -53,7 +53,7 @@ namespace ClassLibrary
                 mDelivery_Address = value;
             }
         }
-        public string Order_ID {
+        public int Order_ID {
             get {
                 return mOrder_ID;
             }
@@ -79,16 +79,34 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int itemNo)
+        public bool Find(Int32 OrderID)
         {
-            mItem_Quantity = 8;
-            mOrder_Date = Convert.ToDateTime("24/02/2004");
-            mOrder_ID = "O-1";
-            mDelivery_Status = true;
-            mOrder_Total = 25;
-            mDelivery_Address = "Test Street";
-            //Always return true
-            return true;
+            //Creating data connection
+            clsDataConnection DB = new clsDataConnection();
+            //Add parameter is the parameters to be searched
+            DB.AddParameter("@OrderID", OrderID);
+            //Execute stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderID");
+
+            if (DB.Count == 1)
+            {
+                //Copy data from database
+                mItem_Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["Item_Quantity"]);
+                mOrder_ID = Convert.ToInt32(DB.DataTable.Rows[0]["Order_ID"]);
+                mOrder_Description = Convert.ToString(DB.DataTable.Rows[0]["Order_Description"]);
+                mOrder_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["Order_Date"]);
+                mDelivery_Status = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivery_Status"]);
+                mDelivery_Address = Convert.ToString(DB.DataTable.Rows[0]["Delivery_Address"]);
+                mOrder_Total = Convert.ToInt32(DB.DataTable.Rows[0]["Order_Total"]);
+
+                //Return true if everything works
+                return true;
+            }
+
+            else {
+                //Return false if there is a problem
+                return false;
+            }
         }
     }
 }
