@@ -91,14 +91,27 @@ namespace ClassLibrary
         }
         public bool Find(string NameAdded)
         {
-            NameAdded = "Osama AlOush";
-            CardAdded = "1234";
-            CVVAdded = "123";
-            IDAdded = "123456789";
-            AmountAdded = "100";
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the customer information to search for
+            DB.AddParameter("@NameAdded", NameAdded);
+            //execute the stored procedure
+            DB.Execute("sproc_tblName_FilterByNameAdded");
+            if (DB.Count == 1)
+            {
+                NameAdded = "Osama AlOush";
+                CardAdded = "1234";
+                CVVAdded = "123";
+                IDAdded = "123456789";
+                AmountAdded = "100";
 
-            //Always return true
-            return true;
+                //Always return true
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
        
