@@ -18,19 +18,45 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsPayment
         clsPayment AnPayment = new clsPayment();
         // capture the card holder name
-        AnPayment.NameAdded = txtHolderName.Text;
+        string NameAdded = txtHolderName.Text;
         // capture the card number
-        AnPayment.CardAdded = txtCardNumber.Text;
+        string CardAdded = txtCardNumber.Text;
         // capture the expiry date
-        AnPayment.DateTime = txtExp_Date.Text;
+        string DateTime = txtExp_Date.Text;
         // capture the CVV number
-        AnPayment.CVVAdded = CVV.Text;
+        string CVVAdded = CVV.Text;
         // capture the customer ID
-        AnPayment.IDAdded = CustomerID.Text;
-        //store the name in the session object
-        Session["AnPayment"] = AnPayment;
-        //navigate to the viewer page
-        Response.Redirect("PaymentViewer.aspx");
+        string IDAdded = CustomerID.Text;
+
+        string AmountAdded = null;
+
+        //variable to store any error messages
+        string Error = "0";
+        //validate the data
+        Error = AnPayment.Valid(NameAdded, CardAdded, CVVAdded, IDAdded, AmountAdded);
+        if (Error == "")
+        {
+            AnPayment.NameAdded = NameAdded;
+
+            AnPayment.CardAdded = CardAdded;
+
+            AnPayment.CVVAdded = CVVAdded;
+
+            AnPayment.IDAdded = IDAdded;
+
+            //store the name in the session object
+            Session["AnPayment"] = AnPayment;
+            //navigate to the viewer page
+            Response.Write("PaymentViewer.aspx");
+
+        }
+
+        else
+        {
+            //display the error message
+            IbIError.Text = Error;
+        }
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
@@ -57,4 +83,5 @@ public partial class _1_DataEntry : System.Web.UI.Page
             CheckBox.Checked = AnPayment.Active;
         }
     }
+
 }
