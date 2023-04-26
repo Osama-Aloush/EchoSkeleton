@@ -62,14 +62,7 @@ namespace ClassLibrary
                 mOrder_ID = value;
             }
         }
-        public int Order_Total {
-            get {
-                return mOrder_Total;
-            }
-            set {
-                mOrder_Total = value;
-            }
-        }
+    
         public DateTime Order_Date {
             get {
                 return mOrder_Date;
@@ -97,7 +90,6 @@ namespace ClassLibrary
                 mOrder_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["Order_Date"]);
                 mDelivery_Status = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivery_Status"]);
                 mDelivery_Address = Convert.ToString(DB.DataTable.Rows[0]["Delivery_Address"]);
-                mOrder_Total = Convert.ToInt32(DB.DataTable.Rows[0]["Order_Total"]);
 
                 //Return true if everything works
                 return true;
