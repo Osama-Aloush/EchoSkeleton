@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute" Text="Card Holder Name"></asp:Label>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 294px; top: 10px; position: absolute" Text="Find" />
             <br />
             <asp:Label ID="Label2" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute" Text="Card Holder Name"></asp:Label>
             <asp:Label ID="Label3" runat="server" height="19px" style="z-index: 1; left: 10px; top: 15px; position: absolute" Text="Card Holder Name"></asp:Label>
