@@ -114,7 +114,57 @@ namespace ClassLibrary
             }
         }
 
-       
+        public string Valid(string nameAdded, string cardAdded, string cVVAdded, string iDAdded, string amountAdded)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if the NameAdded is blank
+            if (NameAdded.Length == 0)
+            {
+                Error = Error + "The Name should not be blank : ";
+            }
+
+            if (NameAdded.Length > 6)
+            {
+                //record the error
+                Error = Error + "The Name Added must be less than 6 characters : ";
+            }
+
+            if (CardAdded.Length == 0)
+            {
+                Error = Error + "The Name should not be blank : ";
+            }
+
+            if (CardAdded.Length > 4)
+            {
+                //record the error
+                Error = Error + "The Name Added must be less than 4 characters : ";
+            }
+
+            if (CVVAdded.Length == 0)
+            {
+                Error = Error + "The Name should not be blank : ";
+            }
+
+            if (CVVAdded.Length > 3)
+            {
+                //record the error
+                Error = Error + "The Name Added must be less than 3 characters : ";
+            }
+
+            if (IDAdded.Length == 0)
+            {
+                Error = Error + "The Name should not be blank : ";
+            }
+
+            if (IDAdded.Length > 9)
+            {
+                //record the error
+                Error = Error + "The Name Added must be less than 9 characters : ";
+            }
+
+            return Error;
+        }
     }
 
 }
