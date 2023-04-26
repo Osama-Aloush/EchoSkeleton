@@ -108,5 +108,67 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        //Validation Method
+        public string Valid(string orderDescVal, string addressVal, int itemNoVal, string orderDateVal)
+        {
+            String Error = "";
+            DateTime DateTemp;
+
+            //If Order Description is blank
+            if (orderDescVal.Length == 0)
+            {
+                Error += "The Description cannot be blank";
+            }
+
+            //if Desc is too long
+            if (orderDescVal.Length > 21)
+            {
+                Error += "Description is too long";
+            }
+            //if address is blank
+            if (addressVal.Length == 0) {
+                Error += "Address cannot be empty";
+            }
+            //if address is too long
+            if (addressVal.Length > 40)
+            {
+                Error += "Address cannot be more than 40 characters";
+            }
+
+            if (itemNoVal < 1) {
+                Error += "No. of items cannot be less than 1";
+            }
+
+            if (itemNoVal > 50)
+            {
+                Error += "No. of items cannot be greater than 50";
+            }
+
+            try
+            {
+       
+
+                //Copy the date variable to the DateTemp variable
+                DateTemp = Convert.ToDateTime(orderDateVal);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error += "The Date cannot be in the past";
+                }
+
+                //Date cannot be in the future
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error += "The Date cannot be in the future";
+                }
+            }
+            catch {
+                Error += "Date entered was not a valid date";
+            }
+            
+
+            //Return any error messages
+            return Error;
+        }
     }
 }
