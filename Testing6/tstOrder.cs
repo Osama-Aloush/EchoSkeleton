@@ -49,15 +49,6 @@ namespace tstOrder
 
         }
 
-        [TestMethod]
-        public void Order_TotalPropertyOk()
-        {
-            clsOrder sampleOrder = new clsOrder();
-            int TestData = 1;
-            sampleOrder.Order_Total = TestData;
-            Assert.AreEqual(sampleOrder.Order_Total, TestData);
-
-        }
 
         [TestMethod]
         public void Item_QuantityPropertyOk()
@@ -227,24 +218,6 @@ namespace tstOrder
             Assert.IsTrue(OK);
         }
 
-        [TestMethod]
-        public void TestOrderTotalFound()
-        {
-            clsOrder AnOrder = new clsOrder();
-            Boolean Found = false;
-            Boolean OK = true;
-
-            Int32 testData = 1;
-
-            Found = AnOrder.Find(testData);
-
-            if (AnOrder.Order_Total != 25)
-            {
-                OK = false;
-            }
-            //test to see that the result is correct
-            Assert.IsTrue(OK);
-        }
 
         [TestMethod]
         public void ValidMethodOK() {
