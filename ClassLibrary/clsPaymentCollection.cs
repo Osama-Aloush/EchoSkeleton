@@ -6,6 +6,9 @@ namespace ClassLibrary
 
     public class clsPaymentCollection
     {
+
+        //private data memeber thisPayment
+        clsPayment mThisPayment = new clsPayment();
         public clsPaymentCollection()
         {
             //var for the index
@@ -32,7 +35,7 @@ namespace ClassLibrary
                 //point to the next record
                 Index++;
             }
-            
+
 
         }
         List<clsPayment> mPaymentList = new List<clsPayment>();
@@ -59,8 +62,61 @@ namespace ClassLibrary
 
             }
         }
-        public clsPayment ThisPayment { get; set; }
+        public clsPayment ThisPayment
+        {
+            get
+            {
+                return mThisPayment;
+            }
+            set
+            {
+                mThisPayment = value;
+            }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@NameAdded", mThisPayment.NameAdded);
+            DB.AddParameter("@CardAdded", mThisPayment.CardAdded);
+            DB.AddParameter("@CVVAdded", mThisPayment.CVVAdded);
+            DB.AddParameter("@IDAdded", mThisPayment.IDAdded);
+            DB.AddParameter("AmountAdded", mThisPayment.AmountAdded);
+            DB.AddParameter("@Active", mThisPayment.Active);
+
+            return DB.Execute("sproc_tblPayment_Instert");
+
+
+
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@NameAdded", mThisPayment.NameAdded);
+            DB.AddParameter("@CardAdded", mThisPayment.CardAdded);
+            DB.AddParameter("@CVVAdded", mThisPayment.CVVAdded);
+            DB.AddParameter("@IDAdded", mThisPayment.IDAdded);
+            DB.AddParameter("AmountAdded", mThisPayment.AmountAdded);
+            DB.AddParameter("@Active", mThisPayment.Active);
+
+            DB.Execute("sproc_tblPayment_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@NameAdded", mThisPayment.NameAdded);
+            
+
+            DB.Execute("sproc_tblPayment_Instert");
+
+
+
+        }
+
     }
-
-
 }

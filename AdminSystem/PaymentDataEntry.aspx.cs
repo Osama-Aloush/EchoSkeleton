@@ -8,8 +8,33 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 NameAdded;
+
+    void DisplayPayment()
+    {
+        clsPaymentCollection PaymentBook = new clsPaymentCollection();
+
+        PaymentBook.ThisPayment.Find("NameAdded");
+        //display the data for this record
+        txtCardNumber.Text = PaymentBook.ThisPayment.CardAdded;
+        txtHolderName.Text = PaymentBook.ThisPayment.NameAdded;
+        txtExp_Date.Text = PaymentBook.ThisPayment.DateTime;
+        CVV.Text = PaymentBook.ThisPayment.CVVAdded;
+        CustomerID.Text = PaymentBook.ThisPayment.IDAdded;
+        CheckBox.Checked = PaymentBook.ThisPayment.Active;
+
+
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        NameAdded = Convert.ToInt32(Session["NameAdded"]);
+        if (IsPostBack == false)
+        {
+            if (NameAdded != -1)
+            {
+                DisplayPayment();
+            }
+        }
 
     }
 
@@ -31,11 +56,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string AmountAdded = null;
 
         //variable to store any error messages
-        string Error = "0";
+        string Error = "";
         //validate the data
         Error = AnPayment.Valid(NameAdded, CardAdded, CVVAdded, IDAdded, AmountAdded);
         if (Error == "")
         {
+
             AnPayment.NameAdded = NameAdded;
 
             AnPayment.CardAdded = CardAdded;
@@ -44,10 +70,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             AnPayment.IDAdded = IDAdded;
 
-            //store the name in the session object
-            Session["AnPayment"] = AnPayment;
+            AnPayment.AmountAdded = AmountAdded; 
+
+            clsPaymentCollection PaymentList = new clsPaymentCollection();
+
+            if (NameAdded == "")
+            {
+                PaymentList.ThisPayment = AnPayment;
+                //add the new record
+                PaymentList.Add();
+            }
+
+            else
+            {
+                PaymentList.ThisPayment.Find(NameAdded);
+
+                PaymentList.ThisPayment = AnPayment;
+
+                PaymentList.Update();
+            }
+            
             //navigate to the viewer page
-            Response.Write("PaymentViewer.aspx");
+            Response.Redirect("PaymentList.aspx");
 
         }
 

@@ -30,4 +30,46 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstPaymentList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["NameAdded"] = -1;
+
+        Response.Redirect("PaymentDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 NameAdded;
+        //if a record has been selected from the list
+        if (lstPaymentList.SelectedIndex != -1)
+        {
+            NameAdded = Convert.ToInt32(lstPaymentList.SelectedValue);
+            Session["NameAdded"] = NameAdded;
+
+            Response.Redirect("PaymentDataEntry.aspx");
+        }
+        else 
+        {
+            lblError.Text = "Please select a record to edit from the list";
+        }
+
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 NameAdded;
+        //if a record has been selected from the list
+        if (lstPaymentList.SelectedIndex != -1)
+        {
+            NameAdded = Convert.ToInt32(lstPaymentList.SelectedValue);
+            Session["NameAdded"] = NameAdded;
+
+            Response.Redirect("PaymentConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
 }
