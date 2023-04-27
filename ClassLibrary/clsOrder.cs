@@ -6,7 +6,6 @@ namespace ClassLibrary
     {
 
         private Int32 mItem_Quantity;
-        private Int32 mOrder_Total;
         private DateTime mOrder_Date;
         private String mDelivery_Address;
         private Int32 mOrder_ID;
