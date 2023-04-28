@@ -117,11 +117,164 @@ namespace ClassLibrary
                 Assert.AreEqual(AllPayments.Count, 2);
             }
 
-            
+            public void AddMethodOK()
+            {
+                //create an instance of the class we want to create
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+                //create the item of the test data
+                clsPayment TestItem = new clsPayment();
+                //var to store the primary key
+                Int32 PrimaryKey = 0;
+                //set it's properties
+                TestItem.Active = true;
+                TestItem.NameAdded = "some name";
+                TestItem.CardAdded = "some card number";
+                TestItem.CVVAdded = "CVV No.";
+                TestItem.IDAdded = "ID No.";
+                TestItem.AmountAdded = "some amount";
+                //set thisPayment to the test data
+                AllPayments.ThisPayment = TestItem;
+                //add the record
+                PrimaryKey = AllPayments.Add();
+                //set the primary key of the test data
+                TestItem.NameAdded = (PrimaryKey);
+                //find the record
+                AllPayments.ThisPayment.Find(PrimaryKey);
+                //test to see that the two values are the same
+                Assert.AreEqual(AllPayments, ThisPaymentPropertyOK, TestItem);
 
-
-            
             }
+
+            public void UpdateMethodOK()
+            {
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+
+                clsPayment TestItem = new clsPayment();
+
+                Int32 PrimaryKey = 0;
+
+                TestItem.Active = true;
+                TestItem.NameAdded = "some name";
+                TestItem.CardAdded = "some card number";
+                TestItem.CVVAdded = "CVV No.";
+                TestItem.IDAdded = "ID No.";
+                TestItem.AmountAdded = "some amount";
+                //set thisPayment to the test data
+                AllPayments.ThisPayment = TestItem;
+                //add the record
+                PrimaryKey = AllPayments.Add();
+                //set the primary key of the test data
+                TestItem.NameAdded = (PrimaryKey);
+                //modify the test data
+                TestItem.Active = true;
+                TestItem.NameAdded = "some name";
+                TestItem.CardAdded = "some card number";
+                TestItem.CVVAdded = "CVV No.";
+                TestItem.IDAdded = "ID No.";
+                TestItem.AmountAdded = "some amount";
+                //set thisPayment to the test data
+                AllPayments.ThisPayment = TestItem;
+                //update the record
+                AllPayments.Update();
+                AllPayments.ThisPayment.Find(PrimaryKey);
+                //test to see that the two values are the same
+                Assert.AreEqual(AllPayments, ThisPaymentPropertyOK, TestItem);
+
+
+            }
+
+            public void DeleteMethodOK()
+            {
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+
+                clsPayment TestItem = new clsPayment();
+
+                Int32 PrimaryKey = 0;
+
+                TestItem.Active = true;
+                TestItem.NameAdded = "some name";
+                TestItem.CardAdded = "some card number";
+                TestItem.CVVAdded = "CVV No.";
+                TestItem.IDAdded = "ID No.";
+                TestItem.AmountAdded = "some amount";
+                //set thisPayment to the test data
+                AllPayments.ThisPayment = TestItem;
+                //add the record
+                PrimaryKey = AllPayments.Add();
+                //set the primary key of the test data
+                TestItem.NameAdded = (PrimaryKey);
+                //find the record
+                AllPayments.ThisPayment.Find(PrimaryKey);
+                //delete the record
+                AllPayments.Delete();
+                //now find the record
+                Boolean Found = AllPayments.ThisPayment.Find(PrimaryKey);
+
+                Assert.IsFalse(Found);
+
+
+            }
+
+            public void ReportByNameMethodOK()
+            {
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+
+                clsPaymentCollection FilteredPayments = new clsPaymentCollection();
+
+                FilteredPayments.ReportByName("");
+
+                Assert.AreEqual(AllPayments.Count, FilteredPayments.Count);
+
+            }
+
+            public void ReportByNameNoneFound()
+            {
+                clsPaymentCollection FilteredPayments = new clsPaymentCollection();
+                //apply a name that doesn't exist
+                FilteredPayments.ReportByName("some name");
+                //test to see that there are no records
+                Assert.AreEqual(0, FilteredPayments.Count);
+            }
+
+            public void ReportByNameTestDataFound()
+            {
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+
+                Boolean OK = true;
+
+                FilteredPayments.ReportByName("some name");
+
+                //check that the correct number of records are found
+                if (FileredPayments.Count == 2)
+                {
+                    //check that the first record is ID 36
+                    if (FilteredPayments.PaymentList[0].NameAdded != 36)
+                    {
+                        OK = flase;
+                    }
+
+                    if (FilteredPayments.PaymentList[0].NameAdded != 37)
+                    {
+                        OK = false;
+                    }
+
+                else
+                    {
+                        OK = false;
+                    }
+                    Assert.IsTrue(OK);
+
+                }
+
+                Assert.AreEqual(AllPayments.Count, FilteredPayments.Count);
+
+            }
+
+
+
+
+
+        }
         }
     }
 
