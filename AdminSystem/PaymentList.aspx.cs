@@ -72,4 +72,25 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to delete from the list";
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsPaymentCollection Payments = new clsPaymentCollection();
+        Payments.ReportByName(txtFilter.Text);
+        lstPaymentList.DataSource = Payments.PaymentList;
+        lstPaymentList.DataValueField = "NameAdded";
+        lstPaymentList.DataTextField = "Name";
+        lstPaymentList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsPaymentCollection Payments = new clsPaymentCollection();
+        Payments.ReportByName("");
+        txtFilter.Text = "";
+        lstPaymentList.DataSource = Payments.PaymentList;
+        lstPaymentList.DataValueField = "NameAdded";
+        lstPaymentList.DataTextField = "Name";
+        lstPaymentList.DataBind();
+    }
 }

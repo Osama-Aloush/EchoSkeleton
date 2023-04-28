@@ -215,6 +215,61 @@ namespace ClassLibrary
 
             }
 
+            public void ReportByNameMethodOK()
+            {
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+
+                clsPaymentCollection FilteredPayments = new clsPaymentCollection();
+
+                FilteredPayments.ReportByName("");
+
+                Assert.AreEqual(AllPayments.Count, FilteredPayments.Count);
+
+            }
+
+            public void ReportByNameNoneFound()
+            {
+                clsPaymentCollection FilteredPayments = new clsPaymentCollection();
+                //apply a name that doesn't exist
+                FilteredPayments.ReportByName("some name");
+                //test to see that there are no records
+                Assert.AreEqual(0, FilteredPayments.Count);
+            }
+
+            public void ReportByNameTestDataFound()
+            {
+                clsPaymentCollection AllPayments = new clsPaymentCollection();
+
+                Boolean OK = true;
+
+                FilteredPayments.ReportByName("some name");
+
+                //check that the correct number of records are found
+                if (FileredPayments.Count == 2)
+                {
+                    //check that the first record is ID 36
+                    if (FilteredPayments.PaymentList[0].NameAdded != 36)
+                    {
+                        OK = flase;
+                    }
+
+                    if (FilteredPayments.PaymentList[0].NameAdded != 37)
+                    {
+                        OK = false;
+                    }
+
+                else
+                    {
+                        OK = false;
+                    }
+                    Assert.IsTrue(OK);
+
+                }
+
+                Assert.AreEqual(AllPayments.Count, FilteredPayments.Count);
+
+            }
+
 
 
 
