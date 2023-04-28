@@ -124,7 +124,7 @@ namespace ClassLibrary
                 //create the item of the test data
                 clsPayment TestItem = new clsPayment();
                 //var to store the primary key
-                Int32 PrimaryKey = 0;
+                string PrimaryKey = "";
                 //set it's properties
                 TestItem.Active = true;
                 TestItem.NameAdded = "some name";
@@ -135,13 +135,13 @@ namespace ClassLibrary
                 //set thisPayment to the test data
                 AllPayments.ThisPayment = TestItem;
                 //add the record
-                PrimaryKey = AllPayments.Add();
+                PrimaryKey = AllPayments.Add().ToString();
                 //set the primary key of the test data
-                TestItem.NameAdded = (PrimaryKey);
+                TestItem.NameAdded = PrimaryKey;
                 //find the record
                 AllPayments.ThisPayment.Find(PrimaryKey);
                 //test to see that the two values are the same
-                Assert.AreEqual(AllPayments, ThisPaymentPropertyOK, TestItem);
+                Assert.AreEqual(AllPayments.ThisPayment, TestItem);
 
             }
 
@@ -151,7 +151,7 @@ namespace ClassLibrary
 
                 clsPayment TestItem = new clsPayment();
 
-                Int32 PrimaryKey = 0;
+                string PrimaryKey = "";
 
                 TestItem.Active = true;
                 TestItem.NameAdded = "some name";
@@ -162,7 +162,7 @@ namespace ClassLibrary
                 //set thisPayment to the test data
                 AllPayments.ThisPayment = TestItem;
                 //add the record
-                PrimaryKey = AllPayments.Add();
+                PrimaryKey = AllPayments.Add().ToString();
                 //set the primary key of the test data
                 TestItem.NameAdded = (PrimaryKey);
                 //modify the test data
@@ -178,7 +178,7 @@ namespace ClassLibrary
                 AllPayments.Update();
                 AllPayments.ThisPayment.Find(PrimaryKey);
                 //test to see that the two values are the same
-                Assert.AreEqual(AllPayments, ThisPaymentPropertyOK, TestItem);
+                Assert.AreEqual(AllPayments.ThisPayment, TestItem);
 
 
             }
@@ -189,7 +189,7 @@ namespace ClassLibrary
 
                 clsPayment TestItem = new clsPayment();
 
-                Int32 PrimaryKey = 0;
+                string PrimaryKey = "";
 
                 TestItem.Active = true;
                 TestItem.NameAdded = "some name";
@@ -200,7 +200,7 @@ namespace ClassLibrary
                 //set thisPayment to the test data
                 AllPayments.ThisPayment = TestItem;
                 //add the record
-                PrimaryKey = AllPayments.Add();
+                PrimaryKey = AllPayments.Add().ToString();
                 //set the primary key of the test data
                 TestItem.NameAdded = (PrimaryKey);
                 //find the record
@@ -238,6 +238,7 @@ namespace ClassLibrary
 
             public void ReportByNameTestDataFound()
             {
+                clsPaymentCollection FilteredPayments = new clsPaymentCollection();
                 clsPaymentCollection AllPayments = new clsPaymentCollection();
 
                 Boolean OK = true;
@@ -245,20 +246,20 @@ namespace ClassLibrary
                 FilteredPayments.ReportByName("some name");
 
                 //check that the correct number of records are found
-                if (FileredPayments.Count == 2)
+                if (FilteredPayments.Count == 2)
                 {
                     //check that the first record is ID 36
-                    if (FilteredPayments.PaymentList[0].NameAdded != 36)
-                    {
-                        OK = flase;
-                    }
-
-                    if (FilteredPayments.PaymentList[0].NameAdded != 37)
+                    if (FilteredPayments.PaymentList[0].NameAdded != "Name1")
                     {
                         OK = false;
                     }
 
-                else
+                    if (FilteredPayments.PaymentList[0].NameAdded != "Name2")
+                    {
+                        OK = false;
+                    }
+
+                    else
                     {
                         OK = false;
                     }
@@ -275,7 +276,7 @@ namespace ClassLibrary
 
 
         }
-        }
     }
+}
 
 
