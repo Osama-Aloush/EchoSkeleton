@@ -72,4 +72,44 @@ public partial class _1_List : System.Web.UI.Page
             Response.Redirect("OrderConfirmDelete.aspx");
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //Create an instance of the collections class
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ReportByStreetType(txtFilter.Text);
+        lstOrderList.DataSource = Orders.OrderList;
+        //Set the name of the primary key
+        lstOrderList.DataValueField = "Order_ID";
+        //Set the name of the data to be displayed
+        lstOrderList.DataTextField = "Delivery_Address";
+        //Bind the data to the list
+        lstOrderList.DataBind();
+
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //Create an instance of the collections class
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ReportByStreetType("");
+        //Clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        lstOrderList.DataSource = Orders.OrderList;
+
+        //Set the name of the primary key
+        lstOrderList.DataValueField = "Order_ID";
+        //Set the name of the data to be displayed
+        lstOrderList.DataTextField = "Delivery_Address";
+        //Bind the data to the list
+        lstOrderList.DataBind();
+
+    }
+
+
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }
