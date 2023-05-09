@@ -32,14 +32,14 @@ public partial class StaffDataEntry : Page
         cmd.Parameters.AddWithValue("@FirstName", FirstName.Text);
         cmd.Parameters.AddWithValue("@LastName", LastName.Text);
         cmd.Parameters.AddWithValue("@Address", address.Text);
-        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-        cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+        cmd.Parameters.AddWithValue("@Email", tEmail.Text);
+        cmd.Parameters.AddWithValue("@Phone", Phone.Text);
         cmd.Parameters.AddWithValue("@Gender", ddlGender.SelectedValue);
         conn.Open();
         cmd.ExecuteNonQuery();
         conn.Close();
 
         // Redirect to home page
-        Response.Redirect("home.aspx");
+        Response.Redirect("StaffViewer.aspx");
     }
 }
