@@ -22,7 +22,7 @@
         <div>
             <label for="firstName">
             <br />
-            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Staff Registration Page<br />
             <br />
             First Name:</label>
             <input type="text" id="firstName" name="firstName" required />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,7 +58,7 @@
         
         <div>
             <input type="submit" value="Submit" />
-            <input type="button" value="Home" onclick="location.href='Stafflist.aspx';" />
+            <input type="button" value="Log in" onclick="location.href='Stafflist.aspx';" />
         </div>
     </form>
 
