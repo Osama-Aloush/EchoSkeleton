@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProcessDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PaymentViewer.aspx.cs" Inherits="_1Viewer" %>
 
 <!DOCTYPE html>
 
