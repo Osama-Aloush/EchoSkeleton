@@ -58,7 +58,7 @@
         
         <div>
             <input type="submit" value="Submit" />
-            <input type="button" value="Log in" onclick="location.href='Stafflist.aspx';" />
+            <input type="button" value="Staff List" onclick="location.href='Stafflist.aspx';" />
         </div>
     </form>
 

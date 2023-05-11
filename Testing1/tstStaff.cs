@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Testing1
+namespace tstStaff
 {
     [TestClass]
     public class tstStaff
@@ -9,6 +9,13 @@ namespace Testing1
         [TestMethod]
         public void TestMethod1()
         {
+
+            clsPayment AnPayment = new clsPayment();
+
+            Assert.IsNotNull(AnPayment);
+
         }
+    
+
     }
 }
